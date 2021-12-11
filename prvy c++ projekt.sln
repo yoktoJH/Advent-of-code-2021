@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den10", "den10\den10.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den10 cast 2", "den10 cast 2\den10 cast 2.vcxproj", "{773AFC7B-59E8-4254-85B8-44CB20AE45F6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den11", "den11\den11.vcxproj", "{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -121,6 +123,14 @@ Global
 		{773AFC7B-59E8-4254-85B8-44CB20AE45F6}.Release|x64.Build.0 = Release|x64
 		{773AFC7B-59E8-4254-85B8-44CB20AE45F6}.Release|x86.ActiveCfg = Release|Win32
 		{773AFC7B-59E8-4254-85B8-44CB20AE45F6}.Release|x86.Build.0 = Release|Win32
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Debug|x64.ActiveCfg = Debug|x64
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Debug|x64.Build.0 = Debug|x64
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Debug|x86.ActiveCfg = Debug|Win32
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Debug|x86.Build.0 = Debug|Win32
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Release|x64.ActiveCfg = Release|x64
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Release|x64.Build.0 = Release|x64
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Release|x86.ActiveCfg = Release|Win32
+		{4A2346A5-7396-4EB6-BBC3-30CB1AFC4E92}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
