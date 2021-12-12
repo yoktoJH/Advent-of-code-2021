@@ -12,12 +12,11 @@ int main()
 			rybicky.push_back(x);
 		}
 	}
-	long long poceryb=0;
-	for (size_t j = 0; j < rybicky.size(); j++)
+	long long hodnoty[6];
+	for (size_t i = 1; i < 6; i++)
 	{
-		
 		std::vector<char>ryba;
-		ryba.push_back(rybicky[j]);
+		ryba.push_back(i);
 		for (long long i = 0; i < 256; i++)
 		{
 			for (long long k = 0; k < ryba.size(); k++)
@@ -37,8 +36,13 @@ int main()
 				}
 			}
 		}
-		poceryb += ryba.size();
+		hodnoty[i] = ryba.size();
 		ryba.clear();
+	}
+	long long poceryb=0;
+	for (size_t j = 0; j < rybicky.size(); j++)
+	{
+		poceryb += hodnoty[rybicky[j]];
 	}
 	std::cout << poceryb;
 
