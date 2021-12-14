@@ -15,7 +15,8 @@ int main()
 	std::vector<std::vector<unsigned long long>> po20dnoch;
 	std::vector<unsigned long long> pocty,pocty_final;
 	std::vector<char> dna;
-	for (unsigned long long i = 0; i < 16; i++)
+	//vytvorenie prkazov a pocitadiel pismen
+	for (unsigned long long i = 0; i < 100; i++)
 	{
 		std::cin >> s1;
 		std::cin >> s2;
@@ -30,6 +31,7 @@ int main()
 		
 		
 	}
+	//kazda dvojica bude reprezentovana ako dve dvojice ktore vzniknu po jednom kroku povodnej dvojice
 	std::vector<std::vector<int>> vysledkyc;
 	for (int i = 0; i < vysledok.size(); i++)
 	{
@@ -54,8 +56,7 @@ int main()
 		vysledkyc.push_back(p);
 	}
 
-
-	std::vector<char> dna1;
+	//vytvorenie ciselnej reprezentacie vstupnej dna 
 	for (unsigned long long i = 0; i < a.size() - 1; i++)
 	{
 		std::string y;
@@ -65,17 +66,13 @@ int main()
 		{
 			if (dvojica[j] == y)
 			{
-				dna1.push_back(j);
+				dna.push_back(j);
 			}
 		}
 	}
+//cistocny vypocet dna do nejakej rozumnej hodnoty
 	std::vector<char> pomocna_dna;
-	
-	for (int pls =0;pls<dna1.size();pls++ )
-	{
-		dna.clear();
-		dna.push_back(dna1[pls]);
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i <20; i++) {
 			//std::cout << i;
 			pomocna_dna = dna;
 			dna.clear();
@@ -86,17 +83,22 @@ int main()
 			}
 			pomocna_dna.clear();
 		}
-		
-	}
+
+	
+	
+	
+	
+	//speciale pocitanie fugujeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+	
 	std::vector<char> pomocna_dna20;
 	std::vector<char> dna20;
 	for (int pls = 0; pls < vysledkyc.size(); pls++)
 	{
 		dna20.clear();
 		dna20.push_back(pls);
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i <20; i++) {
 			//std::cout << i;
-			pomocna_dna20 = dna;
+			pomocna_dna20 = dna20;
 			dna20.clear();
 			for (int x : pomocna_dna20)
 			{
@@ -114,28 +116,48 @@ int main()
 					pocty[j]++;
 				}
 			}
-
+			
 		}
-		for (int j = 0; j < napotom.size(); j++)
-		{
-			if (napotom[j] == dvojica[dna.back()][1])
-			{
-				pocty[j]++;
-			}
-		}
+		
+		
 		po20dnoch.push_back(pocty);
 		for (size_t kk = 0; kk < pocty.size(); kk++)
 		{
 			pocty[kk] = 0;
 		}
 	}
-	int fdssaafdsa;
+
+//---------------------------------------------------------------------------------------------------
+	//sucet poctov vsetkych pismen okrem posledneho
 	for (long long plsfunguj = 0; plsfunguj < dna.size(); plsfunguj++) {
 		for (size_t i = 0; i < pocty_final.size(); i++)
 		{
 			pocty_final[i] += po20dnoch[dna[plsfunguj]][i];
 		}
 	}
+	//vypocet poslednej cifry v dna a zbacsenie jej poctu o 1
+	dna20.clear();
+	dna20.push_back(dna.back());
+	for (int i = 0; i < 20; i++) {
+		//std::cout << i;
+		pomocna_dna20 = dna20;
+		dna20.clear();
+		for (int x : pomocna_dna20)
+		{
+			dna20.push_back(vysledkyc[x][0]);
+			dna20.push_back(vysledkyc[x][1]);
+		}
+		pomocna_dna20.clear();
+	}
+	for (int k = 0; k < napotom.size(); k++)
+	{	
+		if (napotom[k] == dvojica[dna20.back()][1])
+		{
+			pocty_final[k]++;
+		}
+	}
+//------------------------------------------------------------------------------------------------------------
+	//vypis
 	unsigned long long mn = 0, mx = 0;
 	mx = *max_element(pocty_final.begin(), pocty_final.end());
 	mn = *min_element(pocty_final.begin(), pocty_final.end());
