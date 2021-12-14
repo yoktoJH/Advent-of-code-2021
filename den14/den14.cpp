@@ -72,7 +72,7 @@ int main()
 	}
 //cistocny vypocet dna do nejakej rozumnej hodnoty
 	std::vector<char> pomocna_dna;
-		for (int i = 0; i <20; i++) {
+		for (int i = 0; i <20; i++) {//prepisat ak je pozadovany iny pocet krokov
 			//std::cout << i;
 			pomocna_dna = dna;
 			dna.clear();
@@ -89,14 +89,14 @@ int main()
 	
 	
 	//speciale pocitanie fugujeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-	
+	//vypocita hodnoty(pocty pismen) pre kazdu moznu vstupnu dvojicu po 20 krokoch tie su nasledne spocitavane podla ciastocne predpocitanej dna (kod hned nad)
 	std::vector<char> pomocna_dna20;
 	std::vector<char> dna20;
 	for (int pls = 0; pls < vysledkyc.size(); pls++)
 	{
 		dna20.clear();
 		dna20.push_back(pls);
-		for (int i = 0; i <20; i++) {
+		for (int i = 0; i <20; i++) {//prepisat ak je pozadovany iny pocet krokov
 			//std::cout << i;
 			pomocna_dna20 = dna20;
 			dna20.clear();
