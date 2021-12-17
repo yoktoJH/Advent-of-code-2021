@@ -4,56 +4,106 @@
 #include <algorithm>
 std::vector<int> h;
 std::vector<std::string> jaskyna;
+std::vector<std::vector<std::pair<std::pair<int, int>, int> >> graf[100];
+int prejdene[100][100];
+int pocitadlo = 10000;
+std::vector<long long> dist[100];
 
-void pohyb(int x, int y, int s) {
-	//std::cout << x << y << z << std::endl;
-	s += jaskyna[y][x] - 48;
-	if ((x == 99) && (y == 99))
+// y ide zvislo x ide vodorovne aka prve pisem y potom x
+void pridaj_graf(int y, int x) {
+	std::vector<std::pair<int, int>> susedia;
+	if (x == 0) {
+		susedia.push_back(std::make_pair(y, x + 1));
+	}
+	else if (x==99)
 	{
-		h.push_back(s);
+		susedia.push_back(std::make_pair(y, x - 1));
 	}
 	else
 	{
-
-
-		if ((x < 99))
-		{
-
-
-			pohyb(x + 1, y, s);
-
-
-		}
-		if ((y < 99))
-		{
-
-
-			pohyb(x, y + 1, s);
-
-
-		}
-
+		susedia.push_back(std::make_pair(y, x + 1));
+		susedia.push_back(std::make_pair(y, x - 1));
 	}
+	if (y == 0) {
+		susedia.push_back(std::make_pair(y+1, x));
+	}
+	else if (y == 99)
+	{
+		susedia.push_back(std::make_pair(y-1, x));
+	}
+	else
+	{
+		susedia.push_back(std::make_pair(y+1, x));
+		susedia.push_back(std::make_pair(y-1, x));
+	}
+	std::vector<std::pair<std::pair<int, int>, int> > p;
+	graf[y].push_back(p);
+	for (auto vrchol:susedia)
+	{
+		
+		graf[y][x].push_back(std::make_pair(vrchol, jaskyna[vrchol.first][vrchol.second] - 48));
+	}
+}
+
+std::pair<int, int> najdi_najmensie(std::vector<long long> d[100]) {
+	long long n = LLONG_MAX;
+	int y, x;
+	for (size_t i = 0; i < 100; i++)
+	{
+		for (size_t j = 0; j < 100; j++)
+		{
+			if ((d[i][j]<n)&&(prejdene[i][j]==0))
+			{	
+				n = d[i][j];
+				y = i;
+				x = j;
+			}
+		}
+	}
+	return std::make_pair(y, x);
 }
 
 int main()
 {
-
 	std::string riadok;
+	
 	for (size_t i = 0; i < 100; i++)
 	{
-
 		std::getline(std::cin, riadok);
 		jaskyna.push_back(riadok);
-
-		
 	}
-	int x = 0, y = 0, sucet = 0;
-	pohyb(x, y, sucet);
+	for (size_t i = 0; i < 100; i++)//i == y
+	{	
+		for (size_t j = 0; j < 100; j++)//j == x
+		{
+			pridaj_graf(i, j);
+			prejdene[i][j] = 0;
+			if ((j==0)&&(i==0))
+			{
+				dist[i].push_back(0);
+			}
+			else
+			{
+				dist[i].push_back(LLONG_MAX);
+			}
+		}
+	}
+	//djikstra intensifies
+	while (pocitadlo>0)
+	{
+		std::pair<int, int> najm;
+		najm = najdi_najmensie(dist);
+		prejdene[najm.first][najm.second] = 1;
+		pocitadlo--;
+		for (std::pair<std::pair<int, int>, int>  node: graf[najm.first][najm.second])
+		{
+			if (dist[node.first.first][node.first.second]>(dist[najm.first][najm.second]+node.second))
+			{
+				dist[node.first.first][node.first.second] = (dist[najm.first][najm.second] + node.second);
+			}
+		}
+	}
+	std::cout << dist[99][99];
+	 
 
-	int mn;
-	mn = *min_element(h.begin(), h.end());
-
-	std::cout << mn;
-	std::cin >> mn;
 }
