@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="den15_2.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="den15_2.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
