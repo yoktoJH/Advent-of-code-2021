@@ -167,7 +167,15 @@ int main()
     {
         scitanie();
         int zmena = 1;
-        while
+        while (zmena ==1)
+        {
+            zmena = explooosion();
+            znaky.shrink_to_fit();
+            if (zmena==0)
+            {
+                zmena = split();
+            }
+        }
     }
     //vypocxet hodnoty
     while (cisla.size()!=1)
