@@ -163,13 +163,18 @@ int main()
         }
     }
     //odtialto
-    
+    for (size_t i = 0; i < 99; i++)
+    {
+        scitanie();
+        int zmena = 1;
+        while
+    }
     //vypocxet hodnoty
     while (cisla.size()!=1)
     {
-        for (int i = 0; i+1 < polohy_ciarok.size(); i++)
+        for (int i = 0; i < polohy_ciarok.size(); i++)
         {
-            if (znaky[polohy_ciarok[i]-1]!= znaky[polohy_ciarok[i] + 1])
+            if ((znaky[polohy_ciarok[i]-1]=='[')&& (znaky[polohy_ciarok[i] + 1]==']'))
             {
                 int prvecislo = cisla[i], druhecislo = cisla[i + 1];
                 cisla.erase(cisla.begin() + i);
