@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 std::string binarne;
 int sucet_v = 0;
@@ -277,7 +278,80 @@ int tvorba_struktury(Node *rodic){
 		return s_o;
 	}
 }
+unsigned long long vypocet(Node* paket) {
+	if (paket->tID==4)
+	{
+		return paket->literal_value;
+	}
+	else if (paket->tID==0)
+	{
+		unsigned long long sum =0;
+		for (Node *x:paket->child )
+		{
+			sum += vypocet(x);
+		}
+		return sum;
+	}
+	else if (paket->tID == 1)
+	{
+		unsigned long long sum = 1;
+		for (Node* x : paket->child)
+		{
+			sum *= vypocet(x);
+		}
+		return sum;
+	}
+	else if (paket->tID == 2)
+	{
+		std::vector<unsigned long long> sum;
+		for (Node* x : paket->child)
+		{
+			sum.push_back(vypocet(x));
+		}
+		unsigned long long mn = 0;
+		mn = *min_element(sum.begin(), sum.end());
+		return mn;
+	}
+	else if (paket->tID == 3)
+	{
+		std::vector<unsigned long long> sum;
+		for (Node* x : paket->child)
+		{
+			sum.push_back(vypocet(x));
+		}
+		unsigned long long mx = 0;
+		mx = *max_element(sum.begin(), sum.end());
+		return mx;
+	}
+	else if (paket->tID == 5)
+	{
+		unsigned long long v1 = vypocet(paket->child[0]), v2 = vypocet(paket->child[1]);
+		if (v1>v2)
+		{
+			return 1;
+		}
+		return 0;
+	}
+	else if (paket->tID == 6)
+	{
+		unsigned long long v1 = vypocet(paket->child[0]), v2 = vypocet(paket->child[1]);
+		if (v1 < v2)
+		{
+			return 1;
+		}
+		return 0;
+	}
+	else if (paket->tID == 7)
+	{
+		unsigned long long v1 = vypocet(paket->child[0]), v2 = vypocet(paket->child[1]);
+		if (v1 == v2)
+		{
+			return 1;
+		}
+		return 0;
+	}
 
+}
 int main()
 {
 
@@ -300,7 +374,8 @@ int main()
 		root->data = binarne.substr(22);
 	}
 	tvorba_struktury(root);
-	int pipip;
+	unsigned long long pipip = vypocet(root);
+	std::cout << pipip;
 	//rozoberanie(binarne);
 	//std::cout << sucet_v;
 }
