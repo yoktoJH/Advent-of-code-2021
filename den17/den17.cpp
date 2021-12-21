@@ -38,7 +38,7 @@ int main()
 			p = vystrel(i, j);
 			if (p != -200)
 			{	
-				std::cout << j << "," << i << std::endl;
+				//std::cout << j << "," << i << std::endl;
 				vv.push_back(p);
 			}
 		}
@@ -47,6 +47,7 @@ int main()
 	int mx;
 	mx = *max_element(vv.begin(), vv.end());
 	std::cout << mx <<std::endl;
-	
+	int das;
+	std::cin >> das;
 }
 
