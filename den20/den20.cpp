@@ -7,96 +7,88 @@ std::vector<std::string> obrazok;
 std::vector<std::string> obrazok2;
 int main()
 {   
+    int pocet_opakovani = 50;
     std::string vzor = "#####.##....##....##.#.....##....##..########.#.##.#.#.##.#..##.#.####.######.#####.######.##..#######.#.#...#..#.####..####...#.####..#......#...#...##.#.....#....#..###.#..##....#.#....#...##.###.#.#..##.......####.........#.#.###.#.#.....#..##..##.#.##..###.##.###.#....#.#..##.#.......###..#.#.#.#.#.....#..#.###.##..##...#....##...##.##...##.#..####.#...#.####...####..#####.#####.#.##...#.###.#######.###..#..##.#.#..#.#.#######.#####.#.##.#.#...##.######.#...##.##.#.........##...##.....#.###.#.##.#.####.";
-    std::string vypln = "";
-    for (size_t i = 0; i < 106; i++)
+    std::string vypln = "",pad = "";
+    for (size_t i = 0; i < 102+(pocet_opakovani*2); i++)
     {
         vypln += ".";
     }
-    obrazok.push_back(vypln); obrazok.push_back(vypln); obrazok.push_back(vypln);
+    for (size_t i = 0; i < pocet_opakovani+1; i++)
+    {
+        pad += ".";
+    }
+    for (size_t i = 0; i < pocet_opakovani + 1; i++)
+    {
+        obrazok.push_back(vypln);
+    }
+    
     std::string vstup;
     for (size_t i = 0; i < 100; i++)
     {
         std::cin >> vstup;
-        vstup = "..." + vstup + "...";
+        vstup =pad + vstup + pad;
         obrazok.push_back(vstup);
     }
-    obrazok.push_back(vypln); obrazok.push_back(vypln); obrazok.push_back(vypln);
-    
-    for (size_t i = 0; i < 106; i++)
-    {   
-        std::string riadok = "";
-        for (size_t j = 0; j < 106; j++)
-        {
-            std::string bod;
-            if (((i == 0) || (i == 105)) || ((j == 0)||(j == 105))) {
-                riadok += "#";
-            }
-            else
-            {
-                for (int l = -1; l <=1; l++)
-                {
-                    for (int k = -1; k <=1; k++)
-                    {   
-                        if (obrazok[i + l][j + k] == '#')
-                        {
-                            bod+="1";
-                        }
-                        else
-                        {
-                            bod += "0";
-                        }
-                        
-                    }
-                }
-                int b;
-                b = stoi(bod, 0, 2);
-                riadok += vzor[b];
-            }
-        }
-        obrazok2.push_back(riadok);
-    }
-    obrazok = obrazok2;
-    obrazok2.clear();
-    for (size_t i = 0; i < 106; i++)
+    for (size_t i = 0; i < pocet_opakovani + 1; i++)
     {
-        std::string riadok = "";
-        for (size_t j = 0; j < 106; j++)
+        obrazok.push_back(vypln);
+    }
+    char c;
+    for (size_t o = 0; o < pocet_opakovani; o++)
+    {
+        if (o%2==0)
         {
-            std::string bod;
-            if (((i == 0) || (i == 105)) || ((j == 0) || (j == 105))) {
-                riadok += ".";
-            }
-            else
+            c = '#';
+        }
+        else
+        {
+            c = '.';
+        }
+        for (size_t i = 0; i < 102 + (pocet_opakovani * 2); i++)
+        {
+            std::string riadok = "";
+            for (size_t j = 0; j < 102 + (pocet_opakovani * 2); j++)
             {
-                for (int l = -1; l <= 1; l++)
+                std::string bod;
+                if (((i == 0) || (i == 101 + (pocet_opakovani * 2))) || ((j == 0) || (j == 101 + (pocet_opakovani * 2)))) {
+                    riadok += c;
+                }
+                else
                 {
-                    for (int k = -1; k <= 1; k++)
+                    for (int l = -1; l <= 1; l++)
                     {
-                        if (obrazok[i + l][j + k] == '#')
+                        for (int k = -1; k <= 1; k++)
                         {
-                            bod += "1";
-                        }
-                        else
-                        {
-                            bod += "0";
+                            if (obrazok[i + l][j + k] == '#')
+                            {
+                                bod += "1";
+                            }
+                            else
+                            {
+                                bod += "0";
+                            }
+
                         }
                     }
+                    int b;
+                    b = stoi(bod, 0, 2);
+                    riadok += vzor[b];
                 }
-                int b;
-                b = stoi(bod, 0, 2);
-                riadok += vzor[b];
             }
+            obrazok2.push_back(riadok);
         }
-        obrazok2.push_back(riadok);
+        obrazok = obrazok2;
+        obrazok2.clear();
+       
     }
     int p=0;
-    for (size_t i = 0; i < 106; i++)
+    for (size_t i = 0; i < 102 + (pocet_opakovani * 2); i++)
     {
 
-        for (size_t j = 0; j < 106; j++)
+        for (size_t j = 0; j < 102 + (pocet_opakovani * 2); j++)
         {
-            if (obrazok2[i][j] == '#')
+            if (obrazok[i][j] == '#')
             {
                 p += 1;
             }
@@ -104,5 +96,6 @@ int main()
     }
 
     std::cout << p;
+    std::cin >> p;
 }
 
