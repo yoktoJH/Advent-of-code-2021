@@ -2,52 +2,52 @@
 #include <iostream>
 #include <vector>
 #include <string>
-std::vector<std::string>kocky;
+#include <tuple>
+std::vector<std::tuple<std::string, int, int, int, int, int, int>> kocky ;
 int main()
-{   
-	std::string t;
-	std::cin >> t;
+{	
+	std::string v;
 	int x1, x2, y1, y2, z1, z2;
-	std::cin >> x1; std::cin >> x2; std::cin >> y1; std::cin >> y2; std::cin >> z1; std::cin >> z2;
-	
-	if (t == "on")
+	for (size_t i = 0; i < 420; i++)
 	{
-
-		for (size_t i = x1 +120000; i <= x2 +120000; i++)
+		std::cin >> v;
+		std::cin >> x1;
+		std::cin >> x2;
+		std::cin >> y1;
+		std::cin >> y2;
+		std::cin >> z1;
+		std::cin >> z2;
+		kocky.push_back(std::make_tuple(v, x1, x2, y1, y2, z1, z2));
+	}
+	unsigned long long sucet=0;
+	for (int x = -97175; x <=99124 ; x++)
+	{
+		for (int y = -96016; y <= 98300; y++)
 		{
-			for (size_t j = y1 +120000; j <= y2 +120000; j++)
+			for (int z = -98635; z < 93039; z++)
 			{
-				for (size_t k = z1 +120000; k <= z2 +120000; k++)
+				char p = 0;
+				for (std::tuple<std::string, int, int, int, int, int, int> bod:kocky)
 				{
-					std::string x;
-					x = std::to_string(i) + "-" + std::to_string(j) + "-" + std::to_string(k);
-					if (std::find(kocky.begin(), kocky.end(), x) == kocky.end())
+					if (std::get<1>(bod)<=x< std::get<2>(bod))
 					{
-						kocky.push_back(x);
+						if (std::get<3>(bod) <= y < std::get<4>(bod))
+						{
+							if (std::get<5>(bod) <= z < std::get<6>(bod))
+							{
+								if (std::get<0>(bod) == "on") p = 1;
+								else
+								{
+									p = 0;
+								}
+							}
+						}
 					}
-
 				}
+				sucet += p;
 			}
 		}
 	}
-	else
-	{
-		for (size_t i = x1 +120000; i <= x2 +120000; i++)
-		{
-			for (size_t j = y1 +120000; j <= y2 +120000; j++)
-			{
-				for (size_t k = z1 +120000; k <= z2 +120000; k++)
-				{
-					std::string x;
-					x = std::to_string(i) + "-" + std::to_string(j) + "-" + std::to_string(k);
-					if (std::find(kocky.begin(), kocky.end(), x) == kocky.end())
-					{
-						kocky.erase(std::remove(kocky.begin(), kocky.end(), x), kocky.end());
-					}
-				}
-			}
-		}
-	}
-    std::cout << kocky.size();
+	std::cout << sucet;
 }
 
