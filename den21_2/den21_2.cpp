@@ -1,20 +1,73 @@
-// den21_2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 
 #include <iostream>
 
+unsigned long long p1win = 1, p2win=1; 
+void misery(int p1, int score1, int p2, int scorep2, int tah,unsigned long long v) {
+
+		if (tah == 1)
+		{
+			for (size_t i = 1; i < 4; i++)
+			{
+				if ((p1 + i) % 10 == 0) {
+					if (score1 + 10<100)
+					{
+						misery(10, score1 + 10, p2, scorep2, 2, v + 1);
+					}
+					else
+					{
+						p1win += v + 1;
+					}
+					
+				}
+				else
+				{
+					if (score1 + ((p1 + i) % 10) < 100)
+					{
+						misery((p1 + i) % 10, score1 + ((p1 + i) % 10), p2, scorep2, 2, v + 1);
+					}
+					else
+					{
+						p1win += v + 1;
+					}
+					
+				}
+			}
+		}
+		else
+		{
+			for (size_t i = 1; i < 4; i++)
+			{
+				if ((p2 + i) % 10 == 0) {
+					if (scorep2 + 10 < 100)
+					{
+						misery(p1, score1, 10, scorep2 + 10, 1, v + 1);
+					}
+					else
+					{
+						p2win += v + 1;
+					}
+					
+				}
+				else
+				{
+					if (scorep2 + ((p2 + i) % 10) < 100)
+					{
+						misery(p1, score1, (p2 + i) % 10, scorep2 + ((p2 + i) % 10), 1,v+1);
+					}
+					else
+					{
+						p2win += v + 1;
+					}
+					
+				}
+			}
+		}
+}
 int main()
 {
-    std::cout << "Hello World!\n";
+	misery(4, 0, 8, 0, 1,1);
+	std::cout << p1win << std::endl;
+	std::cout << p2win << std::endl;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
