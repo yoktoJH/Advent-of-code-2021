@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prvy c++ projekt.cpp">
+    <ClCompile Include="den2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

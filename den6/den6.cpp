@@ -1,46 +1,51 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
-#include <string>
-//std::ifstream input("den6vstup.txt");
-//std::ofstream output(".txt");
 int main()
-{	
-	std::string subi = "1subor.txt";
-	std::string subo = "2subor.txt";
-	std::vector<int>rybicky;
-	int pocet_rybiciek = 300;
-	for (size_t i = 0; i < 256 ; i++)
-	{	
-		std::ifstream subori(subi);
-		std::ofstream suboro(subo);
-		int x;
-		int p = 0;
-		for (size_t j = 0; j < pocet_rybiciek; j++)
+{
+	int x = 0;
+	std::vector<char>rybicky;
+	while (x != 9)
+	{
+		std::cin >> x;
+		if (x != 9)
 		{
-			subori >> x;
-			if (x == 0) {
-				p++;
-				suboro << 6 << std::endl;
-			}
-			else
-			{
-				suboro << x - 1 << std::endl;
-			}
+			rybicky.push_back(x);
 		}
-		pocet_rybiciek += p;
-		for (size_t k = 0; k < p; k++)
-		{
-			suboro << 8 << std::endl;
-		}
-		subori.close();
-		suboro.close();
-		std::ofstream s(subi);
-		s.close();
-		std::swap(subi, subo);
-		std::cout << i<<std::endl;
 	}
-	std::cout << pocet_rybiciek;
+	long long hodnoty[6];
+	for (size_t i = 1; i < 6; i++)
+	{
+		std::vector<char>ryba;
+		ryba.push_back(i);
+		for (long long i = 0; i < 256; i++)
+		{
+			for (long long k = 0; k < ryba.size(); k++)
+			{
+				long p = 0;
+				if (ryba[k] == 0) {
+					ryba[k] = 6;
+					p++;
+				}
+				else
+				{
+					ryba[k] -= 1;
+				}
+				for (long long l = 0; l < p; l++)
+				{
+					ryba.push_back(9);
+				}
+			}
+		}
+		hodnoty[i] = ryba.size();
+		ryba.clear();
+	}
+	long long poceryb = 0;
+	for (size_t j = 0; j < rybicky.size(); j++)
+	{
+		poceryb += hodnoty[rybicky[j]];
+	}
+	std::cout << poceryb;
+
 	int das;
 	std::cin >> das;
 }
