@@ -7,10 +7,10 @@
 std::string binarne;
 int sucet_v = 0;
 std::string preklad(std::string v) {
-	std::string vy ="";
-	for (char x:v)
+	std::string vy = "";
+	for (char x : v)
 	{
-		if (x=='0')
+		if (x == '0')
 		{
 			vy += "0000";
 		}
@@ -74,7 +74,7 @@ std::string preklad(std::string v) {
 		{
 			vy += "1111";
 		}
-	
+
 	}
 	return vy;
 }
@@ -115,7 +115,7 @@ int do_dec(std::string c) {
 
 
 void rozoberanie(std::string paket) {
-	if (paket.size()>6)
+	if (paket.size() > 6)
 	{
 
 
@@ -147,7 +147,7 @@ void rozoberanie(std::string paket) {
 			{
 				//int p;
 				//p = stoi(paket.substr(7, 15), 0, 2);
-				if (paket.size()>22)
+				if (paket.size() > 22)
 				{
 					rozoberanie(paket.substr(22));
 				}
@@ -155,17 +155,17 @@ void rozoberanie(std::string paket) {
 				{
 					std::cout << paket << std::endl;
 				}
-				
+
 			}
 			else
-			{ 
-				if (paket.size()>17)
+			{
+				if (paket.size() > 17)
 				{
 					rozoberanie(paket.substr(18));
 				}
 				else
 				{
-					std::cout << paket<<std::endl;
+					std::cout << paket << std::endl;
 				}
 			}
 		}
@@ -175,23 +175,23 @@ void rozoberanie(std::string paket) {
 struct Node
 {
 	int version = 0, tID = 0, lID = 0, length = 0;
-    unsigned long long literal_value = 0;
+	unsigned long long literal_value = 0;
 	std::string data = "";
 	std::vector<Node*>child;
 };
-Node *newNode(){
-	Node *temp = new Node;
+Node* newNode() {
+	Node* temp = new Node;
 	return temp;
 }
-int tvorba_struktury(Node *rodic){
-	
-	if (rodic->tID==4)
+int tvorba_struktury(Node* rodic) {
+
+	if (rodic->tID == 4)
 	{
-		std::string cislo="";//celkom ironia xd
+		std::string cislo = "";//celkom ironia xd
 		int i = 0, pokrac = 1;
-		while (pokrac==1)
+		while (pokrac == 1)
 		{
-			pokrac = (rodic->data[i])-48;
+			pokrac = (rodic->data[i]) - 48;
 			cislo += (rodic->data).substr(i + 1, 4);
 			i += 5;
 
@@ -199,9 +199,9 @@ int tvorba_struktury(Node *rodic){
 		rodic->literal_value = stoull(cislo, 0, 2);
 		return i;
 	}
-	else if(rodic->lID==1)
+	else if (rodic->lID == 1)
 	{
-		int s_o =0;
+		int s_o = 0;
 		for (size_t i = 0; i < rodic->length; i++)
 		{
 			int o;
@@ -214,7 +214,7 @@ int tvorba_struktury(Node *rodic){
 				o = tvorba_struktury(rodic->child[i]);
 				o += 6;
 			}
-			else 
+			else
 			{
 				rodic->child[i]->lID = rodic->data[6] - 48;
 				if (rodic->child[i]->lID == 1) {
@@ -223,7 +223,7 @@ int tvorba_struktury(Node *rodic){
 					o = tvorba_struktury(rodic->child[i]);
 					o += 18;
 				}
-			
+
 				else
 				{
 					rodic->child[i]->length = stoi((rodic->data).substr(7, 15), 0, 2);
@@ -239,8 +239,8 @@ int tvorba_struktury(Node *rodic){
 	}
 	else
 	{
-		int s_o=0,i=0,dieta =0;
-		while (i<rodic->length)
+		int s_o = 0, i = 0, dieta = 0;
+		while (i < rodic->length)
 		{
 			int o;
 			(rodic->child).push_back(newNode());
@@ -279,14 +279,14 @@ int tvorba_struktury(Node *rodic){
 	}
 }
 unsigned long long vypocet(Node* paket) {
-	if (paket->tID==4)
+	if (paket->tID == 4)
 	{
 		return paket->literal_value;
 	}
-	else if (paket->tID==0)
+	else if (paket->tID == 0)
 	{
-		unsigned long long sum =0;
-		for (Node *x:paket->child )
+		unsigned long long sum = 0;
+		for (Node* x : paket->child)
 		{
 			sum += vypocet(x);
 		}
@@ -326,7 +326,7 @@ unsigned long long vypocet(Node* paket) {
 	else if (paket->tID == 5)
 	{
 		unsigned long long v1 = vypocet(paket->child[0]), v2 = vypocet(paket->child[1]);
-		if (v1>v2)
+		if (v1 > v2)
 		{
 			return 1;
 		}
@@ -358,12 +358,14 @@ int main()
 	std::string vstup;
 	std::cin >> vstup;
 	binarne = preklad(vstup);
+	rozoberanie(binarne);
+	std::cout << sucet_v << "\n";
 	//std::cout << binarne;
 	Node* root = newNode();
 	root->version = stoi(binarne.substr(0, 3), 0, 2);
 	root->tID = stoi(binarne.substr(3, 3), 0, 2);
 	root->lID = binarne[6] - 48;
-	if (root->lID==1)
+	if (root->lID == 1)
 	{
 		root->length = stoi(binarne.substr(7, 11), 0, 2);
 		root->data = binarne.substr(18);
@@ -376,6 +378,5 @@ int main()
 	tvorba_struktury(root);
 	unsigned long long pipip = vypocet(root);
 	std::cout << pipip;
-	//rozoberanie(binarne);
-	//std::cout << sucet_v;
+
 }
