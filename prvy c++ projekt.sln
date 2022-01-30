@@ -61,6 +61,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den25", "dem25\dem25.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den1", "den1\den1.vcxproj", "{F4B10CC3-C6A0-4863-B8D9-0FC768F0427B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den21_2_2", "den21_2_2\den21_2_2.vcxproj", "{B6C821D4-2359-4014-AC54-9AD17439E2ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -301,6 +303,14 @@ Global
 		{F4B10CC3-C6A0-4863-B8D9-0FC768F0427B}.Release|x64.Build.0 = Release|x64
 		{F4B10CC3-C6A0-4863-B8D9-0FC768F0427B}.Release|x86.ActiveCfg = Release|Win32
 		{F4B10CC3-C6A0-4863-B8D9-0FC768F0427B}.Release|x86.Build.0 = Release|Win32
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Debug|x64.ActiveCfg = Debug|x64
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Debug|x64.Build.0 = Debug|x64
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Debug|x86.ActiveCfg = Debug|Win32
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Debug|x86.Build.0 = Debug|Win32
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Release|x64.ActiveCfg = Release|x64
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Release|x64.Build.0 = Release|x64
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Release|x86.ActiveCfg = Release|Win32
+		{B6C821D4-2359-4014-AC54-9AD17439E2ED}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
