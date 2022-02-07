@@ -65,6 +65,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den21_2_2", "den21_2_2\den2
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den23", "den23\den23.vcxproj", "{F1ACBA4B-3699-45F2-92E6-BB0AC42BF5AC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "den23 druhy pokus", "den23 druhy pokus\den23 druhy pokus.vcxproj", "{BC892DDF-E3B3-448F-9179-E7797447811A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -321,6 +323,14 @@ Global
 		{F1ACBA4B-3699-45F2-92E6-BB0AC42BF5AC}.Release|x64.Build.0 = Release|x64
 		{F1ACBA4B-3699-45F2-92E6-BB0AC42BF5AC}.Release|x86.ActiveCfg = Release|Win32
 		{F1ACBA4B-3699-45F2-92E6-BB0AC42BF5AC}.Release|x86.Build.0 = Release|Win32
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Debug|x64.ActiveCfg = Debug|x64
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Debug|x64.Build.0 = Debug|x64
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Debug|x86.ActiveCfg = Debug|Win32
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Debug|x86.Build.0 = Debug|Win32
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Release|x64.ActiveCfg = Release|x64
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Release|x64.Build.0 = Release|x64
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Release|x86.ActiveCfg = Release|Win32
+		{BC892DDF-E3B3-448F-9179-E7797447811A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
