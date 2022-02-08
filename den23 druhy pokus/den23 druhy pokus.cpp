@@ -211,7 +211,7 @@ int main(){
 	using namespace std;
 	vector<char> jamaa = {'c','d','d','a'}, jamab = {'c','b','c','d'}, jamac = {'d','a','b','a'}, jamad = {'b','c','a','b'}, riadok = {'e','e','e','e','e','e','e','e','e','e','e'};
 	vector<vector<char>> jamy = {jamaa,jamab,jamac,jamad};
-	tah(jamy, riadok, 0, {});
+	tah(jamy, riadok, 0);
 	cout << mintrasa;
 
 }
