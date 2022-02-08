@@ -4,9 +4,9 @@
 #include <string>
 #include <math.h>
 int mintrasa = LONG_MAX;
-std::vector<std::string> zthaov;
+std::vector<char> zthaov;
 
-void tah(std::vector<std::vector<char> > jamy, std::vector<char> riadok,int score) {
+void tah(std::vector<std::vector<char> > jamy, std::vector<char> riadok,int score, std::vector<char> zaznam) {
 	if (score < mintrasa)
 	{
 
@@ -47,6 +47,7 @@ void tah(std::vector<std::vector<char> > jamy, std::vector<char> riadok,int scor
 				{
 					//std::cout << score;
 					mintrasa = score;
+					zthaov = zaznam;
 					//std::cout << mintrasa << "\n";
 				}
 				return;
@@ -117,7 +118,11 @@ void tah(std::vector<std::vector<char> > jamy, std::vector<char> riadok,int scor
 						dummy_jamy[(riadok[i] - 97)].push_back(riadok[i] - 49);
 						dummy_riadok[i] = 'e';
 						prebehlo = 1;
-						tah(dummy_jamy, dummy_riadok, score + pohyb);
+						std::vector<char> z = zaznam;
+						z.push_back(riadok[i]);
+						z.push_back(i + 48);
+						z.push_back('j');
+						tah(dummy_jamy, dummy_riadok, score + pohyb,z);
 
 					}
 				}
@@ -196,7 +201,11 @@ void tah(std::vector<std::vector<char> > jamy, std::vector<char> riadok,int scor
 							int pismenko = dummy_jamy[i].back();
 							dummy_riadok[policko] = pismenko;
 							dummy_jamy[i].pop_back();
-							tah(dummy_jamy, dummy_riadok, score + posun);
+							std::vector<char> z = zaznam;
+							z.push_back(jamy[i].back());
+							z.push_back(i + 48);
+							z.push_back(policko+48);
+							tah(dummy_jamy, dummy_riadok, score + posun,z);
 						}
 					}
 				}
@@ -211,7 +220,10 @@ int main(){
 	using namespace std;
 	vector<char> jamaa = {'c','d','d','a'}, jamab = {'c','b','c','d'}, jamac = {'d','a','b','a'}, jamad = {'b','c','a','b'}, riadok = {'e','e','e','e','e','e','e','e','e','e','e'};
 	vector<vector<char>> jamy = {jamaa,jamab,jamac,jamad};
-	tah(jamy, riadok, 0);
-	cout << mintrasa;
-
+	tah(jamy, riadok, 0, {});
+	cout << mintrasa<<"\n";
+	for (size_t i = 0; i < zthaov.size(); i+=3)
+	{
+		cout << zthaov[i] <<" "<< zthaov[i+1] << " " << zthaov[i + 2] << "\n";
+	}
 }
